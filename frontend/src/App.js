@@ -12,10 +12,10 @@ const theme = createMuiTheme({
 		fontWeightBold: '700',
 	},
 	palette: {
-		primary: {
-			light: '#b0bec5',
-			main: '#78909c',
-			dark: '#546e7a',
+		secondary: {
+			light: '#ffe082',
+			main: '#ffca28',
+			dark: '#ffa000',
 		},
 	},
 });

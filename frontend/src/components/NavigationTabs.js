@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core';
+import Home from '../pages/Home';
+import Portfolio from '../pages/Portfolio';
+import Store from '../pages/Store';
+import Cart from '../pages/Cart';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -16,7 +20,7 @@ function TabPanel(props) {
 		>
 			{value === index && (
 				<Box p={3}>
-					<Typography>{children}</Typography>
+					<Typography component={'div'}>{children}</Typography>
 				</Box>
 			)}
 		</div>
@@ -73,7 +77,7 @@ export default function NavigationTabs() {
 			<AppBar className={classes.appBar} position="static">
 				<Tabs
 					variant="fullWidth"
-					indicatorColor="primary"
+					indicatorColor="secondary"
 					value={value}
 					onChange={handleChange}
 					aria-label="nav tabs example"
@@ -96,16 +100,26 @@ export default function NavigationTabs() {
 						href="/store"
 						{...a11yProps(2)}
 					/>
+					<LinkTab
+						className={classes.linkTab}
+						label="Cart"
+						href="/cart"
+						{...a11yProps(3)}
+					/>
 				</Tabs>
 			</AppBar>
+
 			<TabPanel value={value} index={0}>
-				Home
+				<Home></Home>
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				Portfolio
+				<Portfolio></Portfolio>
 			</TabPanel>
 			<TabPanel value={value} index={2}>
-				Store
+				<Store></Store>
+			</TabPanel>
+			<TabPanel value={value} index={3}>
+				<Cart></Cart>
 			</TabPanel>
 		</div>
 	);

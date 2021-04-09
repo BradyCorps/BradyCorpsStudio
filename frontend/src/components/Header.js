@@ -14,8 +14,8 @@ const Header = () => {
 	return (
 		<Container align="center">
 			<Container className={classes.header}>
-				<Typography variant="h3" component="h2">
-					Brady Corps Studio
+				<Typography variant="h3" component={'div'}>
+					<span>Brady Corps Studio</span>
 				</Typography>
 			</Container>
 		</Container>

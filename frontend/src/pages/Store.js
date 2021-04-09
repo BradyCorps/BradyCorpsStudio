@@ -1,17 +1,17 @@
 import React from 'react';
 import { Typography, Container } from '@material-ui/core';
 
-const Home = () => {
+const Store = () => {
 	return (
 		<Container align="center">
 			<Typography component={'div'} variant="h5">
-				<span>Welcome</span>
+				<span>Store</span>
 			</Typography>
-			<Typography component={'div'} variant="h6">
-				<span>Come take a look around</span>
+			<Typography component={'div'} variant="h7">
+				<span>Available Prints for sale</span>
 			</Typography>
 		</Container>
 	);
 };
 
-export default Home;
+export default Store;
