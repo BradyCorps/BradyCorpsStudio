@@ -7,7 +7,7 @@ const Store = () => {
 			<Typography component={'div'} variant="h5">
 				<span>Store</span>
 			</Typography>
-			<Typography component={'div'} variant="h7">
+			<Typography component={'div'} variant="subtitle1">
 				<span>Available Prints for sale</span>
 			</Typography>
 		</Container>

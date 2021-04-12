@@ -7,7 +7,7 @@ const Cart = () => {
 			<Typography component={'div'} variant="h5">
 				<span>Cart</span>
 			</Typography>
-			<Typography component={'div'} variant="h7">
+			<Typography component={'div'} variant="subtitle1">
 				<span>Your Shopping Cart</span>
 			</Typography>
 		</Container>
