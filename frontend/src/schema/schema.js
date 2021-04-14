@@ -7,7 +7,8 @@ const images = [
 		image: '/images/1.jpg',
 		description:
 			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, ex!',
-		price: '$300.00',
+		printStyles: 'Ready-to-hang Cavans, Metallic Print, Aluminum',
+		price: '$55',
 	},
 	{
 		_id: '2',
@@ -17,7 +18,8 @@ const images = [
 		image: '/images/2.jpg',
 		description:
 			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, ex!',
-		price: '$300.00',
+		printStyles: 'Ready-to-hang Cavans, Metallic Print, Aluminum',
+		price: '$55',
 	},
 	{
 		_id: '3',
@@ -27,7 +29,8 @@ const images = [
 		image: '/images/3.jpg',
 		description:
 			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, ex!',
-		price: '$300.00',
+		printStyles: 'Ready-to-hang Cavans, Metallic Print, Aluminum',
+		price: '$55',
 	},
 	{
 		_id: '4',
@@ -37,7 +40,8 @@ const images = [
 		image: '/images/4.jpg',
 		description:
 			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, ex!',
-		price: '$300.00',
+		printStyles: 'Ready-to-hang Cavans, Metallic Print, Aluminum',
+		price: '$55',
 	},
 	{
 		_id: '5',
@@ -47,7 +51,8 @@ const images = [
 		image: '/images/5.jpg',
 		description:
 			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, ex!',
-		price: '$300.00',
+		printStyles: 'Ready-to-hang Cavans, Metallic Print, Aluminum',
+		price: '$55',
 	},
 	{
 		_id: '6',
@@ -57,7 +62,8 @@ const images = [
 		image: '/images/6.jpg',
 		description:
 			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, ex!',
-		price: '$300.00',
+		printStyles: 'Ready-to-hang Cavans, Metallic Print, Aluminum',
+		price: '$55',
 	},
 	{
 		_id: '7',
@@ -67,7 +73,8 @@ const images = [
 		image: '/images/7.jpg',
 		description:
 			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, ex!',
-		price: '$300.00',
+		printStyles: 'Ready-to-hang Cavans, Metallic Print, Aluminum',
+		price: '$55',
 	},
 	{
 		_id: '8',
@@ -77,7 +84,8 @@ const images = [
 		image: '/images/8.jpg',
 		description:
 			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, ex!',
-		price: '$300.00',
+		printStyles: 'Ready-to-hang Cavans, Metallic Print, Aluminum',
+		price: '$55',
 	},
 ];
 

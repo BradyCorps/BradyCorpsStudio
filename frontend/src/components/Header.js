@@ -1,13 +1,13 @@
 import React from 'react';
 import { Container, Typography, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
 	header: {
 		marginTop: '1rem',
 		textTransform: 'uppercase',
 		letterSpacing: '0.5rem',
 	},
-});
+}));
 const Header = () => {
 	const classes = useStyles();
 
