@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab, Typography, Box, Hidden } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
-import ViewCarouselIcon from '@material-ui/icons/ViewCarousel';
+import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import ViewCarouselOutlinedIcon from '@material-ui/icons/ViewCarouselOutlined';
 import StorefrontIcon from '@material-ui/icons/Storefront';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ShoppingBasketOutlinedIcon from '@material-ui/icons/ShoppingBasketOutlined';
 import Home from '../pages/Home';
 import Portfolio from '../pages/Portfolio';
 import Store from '../pages/Store';
@@ -61,34 +61,24 @@ const useStyles = makeStyles(theme => ({
 		backgroundColor: '#fefefe',
 		color: '#000000',
 		marginTop: '2rem',
-		[theme.breakpoints.up('lg')]: {
-			minHeight: '3.8rem',
-		},
-		[theme.breakpoints.down('sm')]: {
-			height: '3rem',
-		},
+	},
+	tabHeight: {
+		height: 12,
 	},
 	linkTab: {
 		display: 'flex',
-		fontSize: '1rem',
 		letterSpacing: '0.15rem',
-		[theme.breakpoints.up('lg')]: {
-			height: '3.2rem',
-			fontSize: '2rem',
-		},
-		[theme.breakpoints.down('sm')]: {
-			height: '3rem',
-		},
 	},
 	icon: {
 		[theme.breakpoints.up('lg')]: {
-			height: '3.2rem',
-			fontSize: '2rem',
+			fontSize: '1rem',
+
 			margin: 'auto',
 		},
 		[theme.breakpoints.down('sm')]: {
 			marginBottom: 0,
-			minHeight: 0,
+			height: 12,
+			fontSize: '0.8rem',
 		},
 	},
 }));
@@ -105,18 +95,22 @@ export default function NavigationTabs() {
 		<div>
 			<AppBar className={classes.appBar} position="static">
 				<Tabs
+					className={classes.tabHeight}
 					variant="fullWidth"
 					indicatorColor="secondary"
 					value={value}
 					onChange={handleChange}
-					aria-label="nav tabs example"
+					aria-label="nav tabs"
 				>
 					<LinkTab
 						className={(classes.linkTab, classes.icon)}
 						label={<Hidden xsDown>Home</Hidden>}
 						icon={
 							<Hidden smUp>
-								<HomeIcon color="primary" fontSize="large"></HomeIcon>
+								<DashboardOutlinedIcon
+									color="primary"
+									fontSize="default"
+								></DashboardOutlinedIcon>
 							</Hidden>
 						}
 						href="/"
@@ -127,10 +121,10 @@ export default function NavigationTabs() {
 						label={<Hidden xsDown>Portfolio</Hidden>}
 						icon={
 							<Hidden smUp>
-								<ViewCarouselIcon
+								<ViewCarouselOutlinedIcon
 									color="primary"
-									fontSize="large"
-								></ViewCarouselIcon>
+									fontSize="default"
+								></ViewCarouselOutlinedIcon>
 							</Hidden>
 						}
 						href="/portfolio"
@@ -143,7 +137,7 @@ export default function NavigationTabs() {
 							<Hidden smUp>
 								<StorefrontIcon
 									color="primary"
-									fontSize="large"
+									fontSize="default"
 								></StorefrontIcon>
 							</Hidden>
 						}
@@ -152,13 +146,13 @@ export default function NavigationTabs() {
 					/>
 					<LinkTab
 						className={(classes.linkTab, classes.icon)}
-						label={<Hidden xsDown>Cart</Hidden>}
+						label={<Hidden xsDown>Cart {`()`}</Hidden>}
 						icon={
 							<Hidden smUp>
-								<ShoppingCartIcon
+								<ShoppingBasketOutlinedIcon
 									color="primary"
-									fontSize="large"
-								></ShoppingCartIcon>
+									fontSize="default"
+								></ShoppingBasketOutlinedIcon>
 							</Hidden>
 						}
 						href="/cart"

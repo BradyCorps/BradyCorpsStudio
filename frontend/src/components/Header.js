@@ -3,9 +3,14 @@ import { Container, Typography, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
 	header: {
-		marginTop: '1rem',
+		marginTop: '2rem',
+		marginBottom: '1rem',
 		textTransform: 'uppercase',
 		letterSpacing: '0.5rem',
+	},
+	title: {
+		fontFamily: 'Rock Salt',
+		fontSize: 12,
 	},
 }));
 const Header = () => {
@@ -14,7 +19,7 @@ const Header = () => {
 	return (
 		<Container align="center">
 			<Container className={classes.header}>
-				<Typography variant="h3" component={'div'}>
+				<Typography className={classes.title} variant="h4" component={'div'}>
 					<span>Brady Corps Studio</span>
 				</Typography>
 			</Container>

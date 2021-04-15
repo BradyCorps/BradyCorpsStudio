@@ -3,6 +3,7 @@ import {
 	Typography,
 	Grid,
 	Paper,
+	Button,
 	ButtonBase,
 	makeStyles,
 } from '@material-ui/core';
@@ -19,6 +20,10 @@ const useStyles = makeStyles(theme => ({
 	image: {
 		width: 200,
 		height: 200,
+		[theme.breakpoints.down('sm')]: {
+			width: '100%',
+			height: '100%',
+		},
 	},
 	img: {
 		margin: 'auto',
@@ -73,13 +78,13 @@ const ImageCard = ({ image }) => {
 								</Typography>
 							</Grid>
 							<Grid item>
-								<Typography
+								<Button
 									className={classes.addTo}
-									variant="body2"
+									variant="contained"
 									style={{ cursor: 'pointer' }}
 								>
 									Add to Cart
-								</Typography>
+								</Button>
 							</Grid>
 						</Grid>
 						<Grid item>
