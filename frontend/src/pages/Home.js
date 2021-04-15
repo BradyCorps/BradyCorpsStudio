@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, Container, makeStyles, Grid } from '@material-ui/core';
-import images from '../schema/schema';
 import ImageCard from '../components/ImageCard';
+import axios from 'axios';
 
 const useStyles = makeStyles({
 	root: {
@@ -19,6 +19,17 @@ const useStyles = makeStyles({
 
 const Home = () => {
 	const classes = useStyles();
+	const [images, setImages] = useState([]);
+
+	useEffect(() => {
+		const fetchImages = async () => {
+			const { data } = await axios.get('/api/images');
+
+			setImages(data);
+		};
+
+		fetchImages();
+	}, []);
 
 	return (
 		<div className={classes.root}>

@@ -23,7 +23,7 @@ function TabPanel(props) {
 			{...other}
 		>
 			{value === index && (
-				<Box p={3}>
+				<Box p={4}>
 					<Typography component={'div'}>{children}</Typography>
 				</Box>
 			)}
@@ -116,6 +116,7 @@ export default function NavigationTabs() {
 						href="/"
 						{...a11yProps(0)}
 					/>
+
 					<LinkTab
 						className={(classes.linkTab, classes.icon)}
 						label={<Hidden xsDown>Portfolio</Hidden>}

@@ -6,13 +6,17 @@ import {
 	Button,
 	ButtonBase,
 	makeStyles,
+	Modal,
+	Backdrop,
+	Fade,
+	Container,
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
 	root: {
 		flexGrow: 1,
 	},
-	paper: {
+	rootPaper: {
 		padding: theme.spacing(2),
 		margin: 'auto',
 		maxWidth: 600,
@@ -41,13 +45,52 @@ const useStyles = makeStyles(theme => ({
 		letterSpacing: '0.1rem',
 		fontWeight: '500',
 	},
+	// Modal Styling
+	modal: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		color: '#fff',
+	},
+	modalPaper: {
+		backgroundColor: 'rgba(0, 0, 0, 0.7)',
+		width: '90vw',
+		boxShadow: theme.shadows[5],
+		padding: theme.spacing(2, 4, 3),
+		borderRadius: 4,
+	},
+	modalImg: {
+		margin: 'auto',
+		display: 'block',
+		width: '80vw',
+		height: '100%',
+		maxHeight: '80vh',
+		maxWidth: '100%',
+		boxShadow: '0px 0px 12px rgba(100, 100, 100, 0.6)',
+	},
+	mb: {
+		marginBottom: '1.5rem',
+		display: 'flex',
+	},
 }));
 
 const ImageCard = ({ image }) => {
 	const classes = useStyles();
+
+	// Modal handles
+	const [open, setOpen] = React.useState(false);
+
+	const handleOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+
 	return (
 		<div className={classes.root}>
-			<Paper className={classes.paper}>
+			<Paper className={classes.rootPaper}>
 				<Grid container spacing={2}>
 					<Grid item>
 						<ButtonBase className={classes.image}>
@@ -79,12 +122,52 @@ const ImageCard = ({ image }) => {
 							</Grid>
 							<Grid item>
 								<Button
+									type="button"
+									onClick={handleOpen}
 									className={classes.addTo}
 									variant="contained"
 									style={{ cursor: 'pointer' }}
 								>
-									Add to Cart
+									View Options
 								</Button>
+
+								{/* Modal */}
+
+								<Modal
+									aria-labelledby="transition-modal-title"
+									aria-describedby="transition-modal-description"
+									className={classes.modal}
+									open={open}
+									onClose={handleClose}
+									closeAfterTransition
+									BackdropComponent={Backdrop}
+									BackdropProps={{
+										timeout: 500,
+									}}
+								>
+									<Fade in={open}>
+										<Container className={classes.modalPaper}>
+											<Grid container direction="row">
+												<Grid item className={classes.mb}>
+													<div className={classes.containment}>
+														<img
+															className={classes.modalImg}
+															src={image.image}
+															alt={image.name}
+														></img>
+													</div>
+													<Grid>
+														<Button variant="contained">Add to Cart</Button>
+													</Grid>
+												</Grid>
+
+												<Typography variant="subtitle1">
+													react-transition-group animates me.
+												</Typography>
+											</Grid>
+										</Container>
+									</Fade>
+								</Modal>
 							</Grid>
 						</Grid>
 						<Grid item>

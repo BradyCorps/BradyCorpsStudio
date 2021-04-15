@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import NavigationTabs from './components/NavigationTabs';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
@@ -47,12 +48,14 @@ const theme = createMuiTheme({
 
 const App = () => {
 	return (
-		<ThemeProvider theme={theme}>
-			<main>
-				<Header></Header>
-				<NavigationTabs></NavigationTabs>
-			</main>
-		</ThemeProvider>
+		<Router>
+			<ThemeProvider theme={theme}>
+				<main>
+					<Header></Header>
+					<NavigationTabs></NavigationTabs>
+				</main>
+			</ThemeProvider>
+		</Router>
 	);
 };
 

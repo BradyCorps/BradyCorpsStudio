@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, Container, makeStyles, Grid } from '@material-ui/core';
-import images from '../schema/schema';
-import ImageCard from '../components/ImageCard';
+import PortfolioCard from '../components/PortfolioCard';
+import axios from 'axios';
 
 const useStyles = makeStyles({
 	root: {
@@ -19,15 +19,26 @@ const useStyles = makeStyles({
 
 const Portfolio = () => {
 	const classes = useStyles();
+	const [images, setImages] = useState([]);
+
+	useEffect(() => {
+		const fetchImages = async () => {
+			const { data } = await axios.get('/api/images');
+
+			setImages(data);
+		};
+
+		fetchImages();
+	}, []);
 
 	return (
 		<div className={classes.root}>
 			<Container align="center">
 				<Typography component={'div'} variant="h5">
-					<span>Image Suite</span>
+					<span>Welcome</span>
 				</Typography>
 				<Typography className={classes.subtitle} component={'div'} variant="h4">
-					<span>Full Image Sets</span>
+					<span>Latest Image Sets</span>
 				</Typography>
 			</Container>
 
@@ -41,7 +52,7 @@ const Portfolio = () => {
 			>
 				{images.map(image => (
 					<Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
-						<ImageCard image={image} />
+						<PortfolioCard image={image} />
 					</Grid>
 				))}
 			</Grid>

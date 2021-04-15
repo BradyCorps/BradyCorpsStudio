@@ -58,11 +58,12 @@ const ImageCard = ({ image }) => {
 				<Grid item xs={12} container>
 					<Grid item xs container direction="column" spacing={2}>
 						<Grid item xs>
-							<Typography className={classes.typography} variant="h6">
-								{image.name}
-							</Typography>
-							<Typography gutterBottom variant="body2">
-								{image.location}, {image.province}
+							<Typography
+								className={classes.typography}
+								variant="h6"
+								component={'div'}
+							>
+								{image.category}
 							</Typography>
 						</Grid>
 					</Grid>
@@ -74,7 +75,12 @@ const ImageCard = ({ image }) => {
 						color="textSecondary"
 						className={classes.typography}
 					>
-						{image.description}
+						{image.categorydescription}
+					</Typography>
+				</Grid>
+				<Grid item>
+					<Typography variant="subtitle2" color="textSecondary">
+						Resolution: 1920x1080
 					</Typography>
 				</Grid>
 			</Paper>
