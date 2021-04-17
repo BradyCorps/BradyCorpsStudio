@@ -10,6 +10,16 @@ import {
 	Backdrop,
 	Fade,
 	Container,
+	InputLabel,
+	MenuItem,
+	FormControl,
+	Select,
+	Box,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogTitle,
+	Input,
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -54,23 +64,40 @@ const useStyles = makeStyles(theme => ({
 	},
 	modalPaper: {
 		backgroundColor: 'rgba(0, 0, 0, 0.7)',
-		width: '90vw',
+		width: '95%',
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(2, 4, 3),
 		borderRadius: 4,
 	},
 	modalImg: {
 		margin: 'auto',
-		display: 'block',
-		width: '80vw',
-		height: '100%',
-		maxHeight: '80vh',
+		display: 'flex',
 		maxWidth: '100%',
+		maxHeight: '100%',
+		boxShadow: '0px 0px 12px rgba(100, 100, 100, 0.6)',
+	},
+	portraitImg: {
+		margin: 'auto',
+		display: 'block',
+		width: '100%',
+		height: '100%',
+
 		boxShadow: '0px 0px 12px rgba(100, 100, 100, 0.6)',
 	},
 	mb: {
 		marginBottom: '1.5rem',
+	},
+	containment: {
+		height: '75vh',
+		width: '80vw',
+	},
+	formControl: {
+		margin: theme.spacing(1),
+		minWidth: 120,
+	},
+	formContainter: {
 		display: 'flex',
+		flexWrap: 'wrap',
 	},
 }));
 
@@ -86,6 +113,22 @@ const ImageCard = ({ image }) => {
 
 	const handleClose = () => {
 		setOpen(false);
+	};
+
+	// Menu Anchors
+	const [style, setStyle] = React.useState('');
+
+	const [dropOpen, menuOpen] = React.useState(false);
+
+	const handleChange = e => {
+		setStyle(e.target.value);
+	};
+
+	const menuSetOpen = () => {
+		menuOpen(true);
+	};
+	const menuClose = () => {
+		menuOpen(false);
 	};
 
 	return (
@@ -130,44 +173,6 @@ const ImageCard = ({ image }) => {
 								>
 									View Options
 								</Button>
-
-								{/* Modal */}
-
-								<Modal
-									aria-labelledby="transition-modal-title"
-									aria-describedby="transition-modal-description"
-									className={classes.modal}
-									open={open}
-									onClose={handleClose}
-									closeAfterTransition
-									BackdropComponent={Backdrop}
-									BackdropProps={{
-										timeout: 500,
-									}}
-								>
-									<Fade in={open}>
-										<Container className={classes.modalPaper}>
-											<Grid container direction="row">
-												<Grid item className={classes.mb}>
-													<div className={classes.containment}>
-														<img
-															className={classes.modalImg}
-															src={image.image}
-															alt={image.name}
-														></img>
-													</div>
-													<Grid>
-														<Button variant="contained">Add to Cart</Button>
-													</Grid>
-												</Grid>
-
-												<Typography variant="subtitle1">
-													react-transition-group animates me.
-												</Typography>
-											</Grid>
-										</Container>
-									</Fade>
-								</Modal>
 							</Grid>
 						</Grid>
 						<Grid item>
@@ -175,6 +180,107 @@ const ImageCard = ({ image }) => {
 								Starting at {image.price}
 							</Typography>
 						</Grid>
+
+						{/* Modal */}
+						<Modal
+							aria-labelledby="transition-modal-title"
+							aria-describedby="transition-modal-description"
+							className={classes.modal}
+							open={open}
+							onClose={handleClose}
+							closeAfterTransition
+							BackdropComponent={Backdrop}
+							BackdropProps={{
+								timeout: 500,
+							}}
+						>
+							<Fade in={open}>
+								<Container className={classes.modalPaper}>
+									<Grid container spacing={2} className={classes.mb}>
+										<Grid container className={classes.containment}>
+											<img
+												className={classes.modalImg}
+												src={image.image}
+												alt={image.name}
+											></img>
+											<Grid item>
+												<Button variant="contained" onClick={menuSetOpen}>
+													Print Styles
+												</Button>
+												<Dialog
+													disableBackdropClick
+													disableEscapeKeyDown
+													open={dropOpen}
+													onClose={menuClose}
+												>
+													<DialogTitle>Fill the form</DialogTitle>
+													<DialogContent>
+														<form className={classes.formContainter}>
+															<FormControl className={classes.formControl}>
+																<InputLabel htmlFor="demo-dialog-native">
+																	Print Style
+																</InputLabel>
+																<Select
+																	native
+																	value={style}
+																	onChange={handleChange}
+																	input={<Input id="demo-dialog-native" />}
+																>
+																	<option aria-label="None" value="" />
+																	<option value={10}>Metallic Paper</option>
+																	<option value={20}>
+																		Ready-to-hang Canvas
+																	</option>
+																	<option value={30}>
+																		Ready-to-hang Aluminum
+																	</option>
+																</Select>
+															</FormControl>
+															<FormControl className={classes.formControl}>
+																<InputLabel id="demo-dialog-select-label">
+																	Size
+																</InputLabel>
+																<Select
+																	labelId="demo-dialog-select-label"
+																	id="demo-dialog-select"
+																	value={style}
+																	onChange={handleChange}
+																	input={<Input />}
+																>
+																	<MenuItem value="">
+																		<em>None</em>
+																	</MenuItem>
+																	<MenuItem value={10}>Ten</MenuItem>
+																	<MenuItem value={20}>Twenty</MenuItem>
+																	<MenuItem value={30}>Thirty</MenuItem>
+																</Select>
+															</FormControl>
+														</form>
+													</DialogContent>
+													<DialogActions>
+														<Button onClick={menuClose} color="primary">
+															Cancel
+														</Button>
+														<Button onClick={menuClose} color="primary">
+															Ok
+														</Button>
+													</DialogActions>
+												</Dialog>
+											</Grid>
+											<Box
+												display="flex"
+												flexDirection="row"
+												alignItems="flex-end"
+											>
+												<Button variant="contained" color="secondary">
+													Add to Cart
+												</Button>
+											</Box>
+										</Grid>
+									</Grid>
+								</Container>
+							</Fade>
+						</Modal>
 					</Grid>
 				</Grid>
 			</Paper>
