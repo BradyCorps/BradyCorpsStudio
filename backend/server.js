@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import images from './data/schema.js';
+import printStyle from './data/printStyle.js';
 
 dotenv.config();
 const app = express();
@@ -14,11 +15,19 @@ app.get('/', (req, res) => {
 app.get('/api/images', (req, res) => {
 	res.json(images);
 });
+app.get('/api/printStyle', (req, res) => {
+	res.json(printStyle);
+});
 
 // returning single ID based on schema
 app.get('/api/images/:id', (req, res) => {
 	const image = images.find(i => i._id === req.params.id);
 	res.json(image);
+});
+
+app.get('/api/printStyle/:id', (req, res) => {
+	const style = printStyle.find(i => i._id === req.params.id);
+	res.json(style);
 });
 
 const PORT = process.env.PORT || 5000;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	Typography,
 	Grid,
@@ -11,7 +11,6 @@ import {
 	Fade,
 	Container,
 	InputLabel,
-	MenuItem,
 	FormControl,
 	Select,
 	Box,
@@ -21,6 +20,7 @@ import {
 	DialogTitle,
 	Input,
 } from '@material-ui/core';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -98,10 +98,11 @@ const useStyles = makeStyles(theme => ({
 	formContainter: {
 		display: 'flex',
 		flexWrap: 'wrap',
+		flexDirection: 'column',
 	},
 }));
 
-const ImageCard = ({ image }) => {
+const ShoppingCard = ({ image }) => {
 	const classes = useStyles();
 
 	// Modal handles
@@ -130,6 +131,17 @@ const ImageCard = ({ image }) => {
 	const menuClose = () => {
 		menuOpen(false);
 	};
+
+	const [styles, setStyles] = useState([]);
+
+	useEffect(() => {
+		const fetchStyles = async () => {
+			const { data } = await axios.get('/api/printStyle');
+
+			setStyles(data);
+		};
+		fetchStyles();
+	}, []);
 
 	return (
 		<div className={classes.root}>
@@ -197,86 +209,82 @@ const ImageCard = ({ image }) => {
 							<Fade in={open}>
 								<Container className={classes.modalPaper}>
 									<Grid container spacing={2} className={classes.mb}>
-										<Grid container className={classes.containment}>
+										<Grid item className={classes.containment}>
 											<img
 												className={classes.modalImg}
 												src={image.image}
 												alt={image.name}
 											></img>
-											<Grid item>
-												<Button variant="contained" onClick={menuSetOpen}>
-													Print Styles
-												</Button>
-												<Dialog
-													disableBackdropClick
-													disableEscapeKeyDown
-													open={dropOpen}
-													onClose={menuClose}
-												>
-													<DialogTitle>Fill the form</DialogTitle>
-													<DialogContent>
-														<form className={classes.formContainter}>
-															<FormControl className={classes.formControl}>
-																<InputLabel htmlFor="demo-dialog-native">
-																	Print Style
-																</InputLabel>
-																<Select
-																	native
-																	value={style}
-																	onChange={handleChange}
-																	input={<Input id="demo-dialog-native" />}
-																>
-																	<option aria-label="None" value="" />
-																	<option value={10}>Metallic Paper</option>
-																	<option value={20}>
-																		Ready-to-hang Canvas
-																	</option>
-																	<option value={30}>
-																		Ready-to-hang Aluminum
-																	</option>
-																</Select>
-															</FormControl>
-															<FormControl className={classes.formControl}>
-																<InputLabel id="demo-dialog-select-label">
-																	Size
-																</InputLabel>
-																<Select
-																	labelId="demo-dialog-select-label"
-																	id="demo-dialog-select"
-																	value={style}
-																	onChange={handleChange}
-																	input={<Input />}
-																>
-																	<MenuItem value="">
-																		<em>None</em>
-																	</MenuItem>
-																	<MenuItem value={10}>Ten</MenuItem>
-																	<MenuItem value={20}>Twenty</MenuItem>
-																	<MenuItem value={30}>Thirty</MenuItem>
-																</Select>
-															</FormControl>
-														</form>
-													</DialogContent>
-													<DialogActions>
-														<Button onClick={menuClose} color="primary">
-															Cancel
-														</Button>
-														<Button onClick={menuClose} color="primary">
-															Ok
-														</Button>
-													</DialogActions>
-												</Dialog>
-											</Grid>
-											<Box
-												display="flex"
-												flexDirection="row"
-												alignItems="flex-end"
-											>
-												<Button variant="contained" color="secondary">
-													Add to Cart
-												</Button>
-											</Box>
 										</Grid>
+										<Box
+											display="flex"
+											flexDirection="row"
+											alignItems="flex-end"
+										>
+											<Button
+												variant="contained"
+												color="secondary"
+												onClick={menuSetOpen}
+											>
+												Print Styles
+											</Button>
+
+											<Dialog
+												disableBackdropClick
+												disableEscapeKeyDown
+												open={dropOpen}
+												onClose={menuClose}
+											>
+												<DialogTitle>Fill the form</DialogTitle>
+												<DialogContent>
+													<form className={classes.formContainter}>
+														<FormControl className={classes.formControl}>
+															<InputLabel htmlFor="demo-dialog-native">
+																Print Style
+															</InputLabel>
+															<Select
+																native
+																value={style}
+																onChange={handleChange}
+																input={<Input id="demo-dialog-native" />}
+															>
+																<option aria-label="None" value="" />
+
+																{styles.map(style => (
+																	<option>{`${style.print}`}</option>
+																))}
+															</Select>
+														</FormControl>
+														<FormControl>
+															<InputLabel htmlFor="demo-dialog-native">
+																Size
+															</InputLabel>
+															<Select
+																native
+																value={style}
+																onChange={handleChange}
+																input={<Input id="demo-dialog-native" />}
+															>
+																<option aria-label="None" value="" />
+																{styles.map(style =>
+																	style.options.map(option => (
+																		<option>{`${option.size} ${option.price}`}</option>
+																	))
+																)}
+															</Select>
+														</FormControl>
+													</form>
+												</DialogContent>
+												<DialogActions>
+													<Button onClick={menuClose} color="primary">
+														Cancel
+													</Button>
+													<Button onClick={menuClose} color="primary">
+														Add to Cart
+													</Button>
+												</DialogActions>
+											</Dialog>
+										</Box>
 									</Grid>
 								</Container>
 							</Fade>
@@ -288,4 +296,4 @@ const ImageCard = ({ image }) => {
 	);
 };
 
-export default ImageCard;
+export default ShoppingCard;

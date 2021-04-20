@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Container, makeStyles, Grid } from '@material-ui/core';
+
 import ImageCard from '../components/ImageCard';
 import axios from 'axios';
 
@@ -14,6 +15,11 @@ const useStyles = makeStyles({
 	},
 	mt: {
 		marginTop: '2rem',
+	},
+	modal: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 });
 

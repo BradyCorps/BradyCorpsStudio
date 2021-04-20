@@ -10,7 +10,7 @@ const images = [
 		image: '/images/1.jpg',
 		description:
 			'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, ex!',
-		printStyles: 'Ready-to-hang Cavans, Metallic Print, Aluminum',
+		printStyles: ['Metallic Paper', 'Canvas', 'Aluminum'],
 		price: '$55',
 	},
 	{

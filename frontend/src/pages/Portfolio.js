@@ -34,11 +34,8 @@ const Portfolio = () => {
 	return (
 		<div className={classes.root}>
 			<Container align="center">
-				<Typography component={'div'} variant="h5">
-					<span>Welcome</span>
-				</Typography>
 				<Typography className={classes.subtitle} component={'div'} variant="h4">
-					<span>Latest Image Sets</span>
+					<span>Full Image Sets</span>
 				</Typography>
 			</Container>
 
